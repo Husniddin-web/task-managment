@@ -31,6 +31,12 @@ export class AuthController {
   
   - **Email**: \`admin@gmail.com\`
   - **Password**: \`admin_mock\`
+
+  - **Email**: \`user@gmail.com\`
+  - **Password**: \`user123\`
+  
+  - **Email**: \`student@gmail.com\`
+  - **Password**: \`student123\`
   `,
 	})
 	@ApiResponse({

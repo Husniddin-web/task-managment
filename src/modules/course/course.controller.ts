@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from "@nestj
 import { CourseService } from "./course.service";
 import { CreateCourseDto } from "./dto/create-course.dto";
 import { UpdateCourseDto } from "./dto/update-course.dto";
-import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { ApiOperation, ApiParam, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { Auth } from "../auth/decorators/auth.decorator";
 import { QueryCourseDto } from "./dto/queryCourse.dto";
 import { Role } from "../../common/enums";
@@ -24,15 +24,16 @@ export class CourseController {
 
 	@Auth(Role.STUDENT)
 	@Post(":courseId/register")
+	@ApiParam({ name: "courseId", description: "Course ID (MongoDB ObjectId)" })
 	@ApiOperation({ summary: "Enroll Student to course" })
 	registerStudentCourse(
-		@Param("courseId", ValidateObjectIdPipe) courseId: ObjectId,
+		@Param("courseId") courseId: ObjectId,
 		@GetCurrentUser("email") userEmail: string,
 	) {
 		return this.courseService.enrollCourse(courseId, userEmail);
 	}
 
-	@Auth()
+	@Auth(Role.ADMIN, Role.STUDENT)
 	@Get()
 	@ApiOperation({ summary: "List all available courses" })
 	@ApiResponse({ status: 200, description: "Courses retrieved successfully" })

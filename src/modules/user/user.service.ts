@@ -37,6 +37,7 @@ export class UserService {
 			},
 		];
 
+		
 		for (const user of usersToSeed) {
 			const existing = await this.userModel.findOne({ email: user.email });
 			if (!existing) {
