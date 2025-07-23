@@ -19,6 +19,25 @@ A test-friendly backend API built with **NestJS**, **MongoDB**, and **JWT Authen
 git clone https://github.com/your-username/your-repo.git
 cd your-repo
 
+ npm install
+
+Create .env File
+You can use the following as your .env:
+
+PORT=3000
+MONGODB_URI=mongodb://localhost:27017/nest-student
+JWT_SECRET=your_jwt_secret
+JWT_EXPIRES_IN=1h
+REFRESH_TOKEN_SECRET=your_refresh_secret
+REFRESH_TOKEN_EXPIRES_IN=7d
+
+
+npm run start:dev
+
+. API Documentation (Swagger)
+
+
+http://localhost:PORT/api/docs
 
 // login info for users
 
